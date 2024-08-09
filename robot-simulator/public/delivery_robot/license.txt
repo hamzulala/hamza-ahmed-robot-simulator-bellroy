@@ -1,0 +1,8 @@
+Model Information:
+* title:	Delivery Robot
+* source:	https://sketchfab.com/3d-models/delivery-robot-980a192825b54d4ab520ecff50aab3b4
+* author:	AndyBegg (https://sketchfab.com/AndyBegg)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

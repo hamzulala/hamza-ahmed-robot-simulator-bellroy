@@ -4,6 +4,7 @@ import './App.css';
 import Grid from './components/grid/grid'
 import Controls from './components/controls/controls';
 import RobotRenderer from './components/robotRenderer/robotRenderer';
+import CoordinateViewer from './components/coordinateViewer/coordinateViewer';
 
 const directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
 
@@ -52,12 +53,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Robot Simulator</h1>
-      <Grid position={position} />
-      <Controls moveForward={moveForward} rotateLeft={rotateLeft} rotateRight={rotateRight} />
+      <CoordinateViewer position={position} />
+      <div className='flex flex-row justify-center items-center'>
       <RobotRenderer position={position} />
-      <p>Position: ({position.x}, {position.y})</p>
-      <p>Direction: {position.direction}</p>
+      </div>
+      <Controls moveForward={moveForward} rotateLeft={rotateLeft} rotateRight={rotateRight} />
     </div>
   );
 };
