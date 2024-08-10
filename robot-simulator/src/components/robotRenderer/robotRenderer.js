@@ -3,10 +3,12 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
 const RobotRenderer = ({ position }) => {
   const mountRef = useRef(null);
   const robotRef = useRef(null); // Reference to the robot model
+  const staticModelRef = useRef(null); // Reference to the static model
 
   const targetPosition = useRef(new THREE.Vector3(2 - position.x, 0, position.y - 2));
   const targetRotation = useRef(new THREE.Euler(0, 0, 0));
@@ -25,7 +27,7 @@ const RobotRenderer = ({ position }) => {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0xffffff, 1); // Set background to white
+    renderer.setClearColor(0xf0f0f0);
     renderer.shadowMap.enabled = true; // Enable shadow maps
     renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Use soft shadows
     mount.appendChild(renderer.domElement);
@@ -54,7 +56,7 @@ const RobotRenderer = ({ position }) => {
     pointlight2.castShadow = false; // Enable shadows for the light
     scene.add(pointlight2);
 
-    // Load GLTF model
+    // Load GLTF robot model
     const loader = new GLTFLoader();
     loader.load("/delivery_robot/scene.gltf", (gltf) => {
       const robot = gltf.scene;
@@ -68,6 +70,21 @@ const RobotRenderer = ({ position }) => {
       robot.rotation.y = Math.PI; // Face south initially
       scene.add(robot);
       robotRef.current = robot; // Store reference to robot for later updates
+    });
+
+    // Load static GLTF model
+    loader.load("apple_watch_7/scene.gltf", (gltf) => {
+      const staticModel = gltf.scene;
+      staticModel.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+        }
+      });
+      staticModel.scale.set(2, 2, 2); // Adjust scale as necessary
+      staticModel.position.set(0, -5.45, 6); // Adjust position as needed
+      staticModel.rotateX(-1.57)
+      scene.add(staticModel);
+      staticModelRef.current = staticModel; // Store reference to static model
     });
 
     // Plane setup to receive shadows
@@ -84,7 +101,7 @@ const RobotRenderer = ({ position }) => {
     scene.add(gridHelper);
 
     // Position camera
-    camera.position.set(-2, 6, -8);
+    camera.position.set(0, 6, -8);
     camera.lookAt(2.5, 0, 2.5);
 
     // Add OrbitControls
@@ -152,7 +169,7 @@ const RobotRenderer = ({ position }) => {
     }
   }, [position]);
 
-  return <div ref={mountRef} style={{ width: "50%", height: "400px" }} />;
+  return <div ref={mountRef} style={{ width: "100%", height: "400px" }} />;
 };
 
 export default RobotRenderer;

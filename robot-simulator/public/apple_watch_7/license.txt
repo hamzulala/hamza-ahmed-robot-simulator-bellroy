@@ -1,0 +1,8 @@
+Model Information:
+* title:	Apple Watch 7
+* source:	https://sketchfab.com/3d-models/apple-watch-7-3344f2785b3548beacd8dd8f129abcca
+* author:	Virtual Studio (https://sketchfab.com/virtualstudio)
+
+Model License:
+* license type:	SKETCHFAB Editorial (https://sketchfab.com/licenses)
+* requirements:	Use only in connection with events that are newsworthy or of public interest

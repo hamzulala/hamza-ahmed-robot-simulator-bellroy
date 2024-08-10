@@ -1,63 +1,45 @@
-// src/App.js
-import React, { useState } from 'react';
-import './App.css';
-import Grid from './components/grid/grid'
-import Controls from './components/controls/controls';
-import RobotRenderer from './components/robotRenderer/robotRenderer';
-import CoordinateViewer from './components/coordinateViewer/coordinateViewer';
-
-const directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
+import React, { useState } from "react";
+import "./App.css";
+import Controls from "./components/controls/controls";
+import RobotRenderer from "./components/robotRenderer/robotRenderer";
+import CoordinateViewer from "./components/coordinateViewer/coordinateViewer";
+import { moveForward, rotateLeft, rotateRight } from "./robotLogic";
 
 const App = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0, direction: 'NORTH' });
+  const [position, setPosition] = useState({ x: 0, y: 0, direction: "NORTH" });
 
-  const moveForward = () => {
-    const { x, y, direction } = position;
-    let newX = x;
-    let newY = y;
-
-    switch (direction) {
-      case 'NORTH':
-        newY = Math.min(4, y + 1);
-        break;
-      case 'EAST':
-        newX = Math.min(4, x + 1);
-        break;
-      case 'SOUTH':
-        newY = Math.max(0, y - 1);
-        break;
-      case 'WEST':
-        newX = Math.max(0, x - 1);
-        break;
-      default:
-        break;
-    }
-
-    console.log(`Moving from (${x}, ${y}) to (${newX}, ${newY})`);
-    setPosition({ ...position, x: newX, y: newY });
+  const handleMoveForward = () => {
+    const newPosition = moveForward(position);
+    console.log(`Moving from (${position.x}, ${position.y}) to (${newPosition.x}, ${newPosition.y})`);
+    setPosition(newPosition);
   };
 
-  const rotateLeft = () => {
-    const currentDirectionIndex = directions.indexOf(position.direction);
-    const newDirectionIndex = (currentDirectionIndex + directions.length - 1) % directions.length;
-    console.log(`Rotating left from ${position.direction} to ${directions[newDirectionIndex]}`);
-    setPosition({ ...position, direction: directions[newDirectionIndex] });
+  const handleRotateLeft = () => {
+    const newPosition = rotateLeft(position);
+    console.log(`Rotating left from ${position.direction} to ${newPosition.direction}`);
+    setPosition(newPosition);
   };
 
-  const rotateRight = () => {
-    const currentDirectionIndex = directions.indexOf(position.direction);
-    const newDirectionIndex = (currentDirectionIndex + 1) % directions.length;
-    console.log(`Rotating right from ${position.direction} to ${directions[newDirectionIndex]}`);
-    setPosition({ ...position, direction: directions[newDirectionIndex] });
+  const handleRotateRight = () => {
+    const newPosition = rotateRight(position);
+    console.log(`Rotating right from ${position.direction} to ${newPosition.direction}`);
+    setPosition(newPosition);
   };
 
   return (
-    <div className="App">
+    <div className="">
       <CoordinateViewer position={position} />
-      <div className='flex flex-row justify-center items-center'>
-      <RobotRenderer position={position} />
+      <div className="p-4">
+        <h1 className="text-center text-2xl font-bold">Robot Simulator</h1>
       </div>
-      <Controls moveForward={moveForward} rotateLeft={rotateLeft} rotateRight={rotateRight} />
+      <div className="flex flex-row justify-center items-center bg-[#f0f0f0] shadow-sm">
+        <RobotRenderer position={position} />
+      </div>
+      <Controls
+        moveForward={handleMoveForward}
+        rotateLeft={handleRotateLeft}
+        rotateRight={handleRotateRight}
+      />
     </div>
   );
 };
