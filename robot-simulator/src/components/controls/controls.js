@@ -1,4 +1,3 @@
-// src/Controls.js
 import React from 'react';
 import { AiOutlineRotateLeft, AiOutlineRotateRight } from "react-icons/ai";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";

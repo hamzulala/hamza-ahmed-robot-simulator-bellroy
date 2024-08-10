@@ -3,7 +3,6 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 
 const RobotRenderer = ({ position }) => {
   const mountRef = useRef(null);
@@ -65,8 +64,8 @@ const RobotRenderer = ({ position }) => {
           child.castShadow = true;
         }
       });
-      robot.scale.set(1.5, 1, 1); // Adjust scale as necessary
-      robot.position.set(2, 0, 2);
+      robot.scale.set(1.5, 1, 1); // Adjust scale as necessary for robot
+      robot.position.set(2, 0, 2); //Apple watch position (Adjust it here)
       robot.rotation.y = Math.PI; // Face south initially
       scene.add(robot);
       robotRef.current = robot; // Store reference to robot for later updates
@@ -80,11 +79,11 @@ const RobotRenderer = ({ position }) => {
           child.castShadow = true;
         }
       });
-      staticModel.scale.set(2, 2, 2); // Adjust scale as necessary
-      staticModel.position.set(0, -5.45, 6); // Adjust position as needed
+      staticModel.scale.set(2, 2, 2); // Adjust scale as necessary for apple watch
+      staticModel.position.set(0, -5.45, 6); // Adjust position as needed for apple watch
       staticModel.rotateX(-1.57)
       scene.add(staticModel);
-      staticModelRef.current = staticModel; // Store reference to static model
+      staticModelRef.current = staticModel; // Store reference to static model of apple watch
     });
 
     // Plane setup to receive shadows
@@ -97,7 +96,7 @@ const RobotRenderer = ({ position }) => {
     scene.add(plane);
 
     // Grid setup
-    const gridHelper = new THREE.GridHelper(5, 5, 0x0000ff, 0x808080); // Blue color for lines and grey for grid
+    const gridHelper = new THREE.GridHelper(5, 5, 0x0000ff, 0x808080);
     scene.add(gridHelper);
 
     // Position camera
