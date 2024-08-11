@@ -151,6 +151,9 @@ const AboutMe = () => {
           robot and static models.
         </li>
         <li>
+          <strong>Framer Motion:</strong> For animations and transitions in the UI.
+        </li>
+        <li>
           <strong>Jest:</strong> For unit testing the robot's movement and
           rotation logic.
         </li>

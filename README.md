@@ -13,6 +13,7 @@ This project is a **Robot Simulator** built using **React** and **Three.js**. It
 
 - **React**: For building the user interface and managing component state.
 - **Three.js**: For 3D rendering and visualization of the robot and static models.
+- **Framer Motion**: For animations and transitions in the user interface.
 - **Jest**: For unit testing the robot's movement and rotation logic.
 
 ## Project Structure
