@@ -26,7 +26,7 @@ const RobotRenderer = ({ position }) => {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0xf0f0f0);
+    renderer.setClearColor(0xc4c4c4);
     renderer.shadowMap.enabled = true; // Enable shadow maps
     renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Use soft shadows
     mount.appendChild(renderer.domElement);
@@ -80,8 +80,9 @@ const RobotRenderer = ({ position }) => {
         }
       });
       staticModel.scale.set(2, 2, 2); // Adjust scale as necessary for apple watch
-      staticModel.position.set(0, -5.45, 6); // Adjust position as needed for apple watch
+      staticModel.position.set(0, -5.45, -5.8); // Adjust position as needed for apple watch
       staticModel.rotateX(-1.57)
+      staticModel.rotateZ(3.141)
       scene.add(staticModel);
       staticModelRef.current = staticModel; // Store reference to static model of apple watch
     });
