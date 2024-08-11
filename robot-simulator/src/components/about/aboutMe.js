@@ -39,7 +39,7 @@ const AboutMe = () => {
   };
 
   return (
-    <div className="bg-gray-100 p-8 rounded-lg shadow-lg">
+    <div className="p-8 shadow-lg">
       <motion.h1
         ref={(el) => (sectionsRef.current[0] = el)}
         initial="hidden"

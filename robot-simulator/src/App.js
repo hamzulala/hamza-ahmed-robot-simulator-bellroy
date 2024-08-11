@@ -37,20 +37,20 @@ const App = () => {
   return (
     <div className="">
       <CoordinateViewer position={position} />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="p-4 shadow-lg"
-      >
-        <h1 className="text-center text-2xl font-semibold tracking-wide">
+      <div className="p-4 shadow-lg">
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-center text-2xl font-semibold tracking-wide"
+        >
           Robot Simulator
-        </h1>
-      </motion.div>
+        </motion.h1>
+      </div>
       <div className="flex flex-row justify-center items-center bg-[#c4c4c4] shadow-lg">
         <RobotRenderer position={position} />
       </div>
-      <div className="">
+      <div>
         <Controls
           moveForward={handleMoveForward}
           rotateLeft={handleRotateLeft}
